@@ -64,6 +64,7 @@ public class Hotel {
         joinColumns = @JoinColumn(name = "hotel_id")
     )
     @Column(name = "amenity")
+    @Builder.Default
     private List<String> amenities = new ArrayList<>();
 
     public String getFullAddress() {

@@ -66,6 +66,10 @@ public class HotelService {
 
     @Transactional
     public HotelShortDto createHotel(HotelDto request) {
+        if (request == null) {
+            throw new IllegalArgumentException("Hotel request cannot be null");
+        }
+
         Hotel hotel = Hotel.builder()
                 .name(request.getName())
                 .description(request.getDescription())
@@ -84,6 +88,10 @@ public class HotelService {
     public HotelDto addAmenities(Long hotelId, List<String> amenities) {
         Hotel hotel = hotelRepository.findById(hotelId)
                 .orElseThrow(() -> new EntityNotFoundException("Hotel not found with id: " + hotelId));
+
+        if (amenities == null || amenities.isEmpty()) {
+            throw new IllegalArgumentException("Amenities list cannot be null or empty");
+        }
 
         if (hotel.getAmenities() == null) {
             hotel.setAmenities(new ArrayList<>());
