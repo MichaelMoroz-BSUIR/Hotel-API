@@ -1,0 +1,71 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-hotels-table
+      author: developer
+      changes:
+        - createTable:
+            tableName: hotels
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(4000)
+              - column:
+                  name: brand
+                  type: varchar(255)
+              - column:
+                  name: house_number
+                  type: int
+              - column:
+                  name: street
+                  type: varchar(255)
+              - column:
+                  name: city
+                  type: varchar(255)
+              - column:
+                  name: country
+                  type: varchar(255)
+              - column:
+                  name: post_code
+                  type: varchar(50)
+              - column:
+                  name: phone
+                  type: varchar(50)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: check_in_time
+                  type: varchar(10)
+              - column:
+                  name: check_out_time
+                  type: varchar(10)
+
+  - changeSet:
+      id: 2-create-hotel-amenities-table
+      author: developer
+      changes:
+        - createTable:
+            tableName: hotel_amenities
+            columns:
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_hotel_amenities_hotel
+                    references: hotels(id)
+              - column:
+                  name: amenity
+                  type: varchar(255)
