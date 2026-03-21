@@ -38,15 +38,15 @@ public class Address {
             sb.append(street);
         }
         if (city != null) {
-            if (sb.length() > 0) sb.append(", ");
+            if (!sb.isEmpty()) sb.append(", ");
             sb.append(city);
         }
         if (postCode != null) {
-            if (sb.length() > 0) sb.append(", ");
+            if (!sb.isEmpty()) sb.append(", ");
             sb.append(postCode);
         }
         if (country != null) {
-            if (sb.length() > 0) sb.append(", ");
+            if (!sb.isEmpty()) sb.append(", ");
             sb.append(country);
         }
         return sb.toString();
