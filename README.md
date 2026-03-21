@@ -2,6 +2,22 @@
 
 A RESTful API application for managing hotels, built with Spring Boot, JPA, and Liquibase.
 
+## Technologies
+
+- **Java**: 21
+- **Spring Boot**: 4.0.4
+- **Spring Data JPA**: For database operations
+- **Liquibase**: For database schema migrations
+- **H2 Database**: In-memory database (easily switchable to PostgreSQL/MySQL)
+- **Swagger/OpenAPI**: API documentation
+- **Lombok**: Reduce boilerplate code
+- **JUnit 5 + Mockito**: Testing
+
+## Requirements
+
+- Java 21 or higher
+- Maven 3.6+
+
 ## Running the Application
 
 ### Using Maven
@@ -168,6 +184,11 @@ GET /property-view/histogram/{param}
 Swagger UI is available at:
 ```
 http://localhost:8092/swagger-ui.html
+```
+
+OpenAPI specification:
+```
+http://localhost:8092/v3/api-docs
 ```
 
 ## Database
