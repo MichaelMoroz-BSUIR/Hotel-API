@@ -55,8 +55,10 @@ public class HotelService {
         }
 
         if (amenities != null && !amenities.isEmpty()) {
-            spec = spec.and((root, query, cb) ->
-                root.get("amenities").in(amenities.stream().map(String::toLowerCase).toList()));
+            spec = spec.and((root, query, cb) -> {
+                jakarta.persistence.criteria.Join<Hotel, String> join = root.join("amenities");
+                return cb.lower(join).in(amenities.stream().map(String::toLowerCase).toList());
+            });
         }
 
         return hotelRepository.findAll(spec).stream()
