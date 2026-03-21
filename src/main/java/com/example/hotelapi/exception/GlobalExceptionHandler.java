@@ -69,7 +69,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Map<String, Object>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        return buildErrorResponse(HttpStatus.BAD_REQUEST, 
+        assert ex.getRequiredType() != null;
+        return buildErrorResponse(HttpStatus.BAD_REQUEST,
             "Invalid value for parameter '" + ex.getName() + "': expected " + ex.getRequiredType().getSimpleName());
     }
 
