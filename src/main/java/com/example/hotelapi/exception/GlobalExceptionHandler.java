@@ -1,8 +1,6 @@
 package com.example.hotelapi.exception;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
@@ -52,7 +50,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DataAccessResourceFailureException.class)
-    public ResponseEntity<Map<String, Object>> handleDataAccessResourceFailureException(DataAccessResourceFailureException ex) {
+    public ResponseEntity<Map<String, Object>> handleDataAccessResourceFailureException() {
         return buildErrorResponse(HttpStatus.SERVICE_UNAVAILABLE, "Database connection failed");
     }
 
@@ -98,15 +96,5 @@ public class GlobalExceptionHandler {
             body.put("errors", errors);
         }
         return ResponseEntity.status(status.value()).body(body);
-    }
-
-    @Getter
-    @AllArgsConstructor
-    public static class ErrorResponse {
-        private Instant timestamp;
-        private int status;
-        private String error;
-        private String message;
-        private Map<String, String> errors;
     }
 }
